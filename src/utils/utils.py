@@ -67,6 +67,32 @@ def clean_descriptions(descriptions):
             desc_list[i] = ' '.join(desc)
             
             
+# Get vocabulary of descriptions, just get more than 10 times repeated words
+def get_vocab(descriptions):
+    vocab = set()
+    count_vocab = dict()
+    # Count all words
+    for desc_list in descriptions.values():
+        for desc in desc_list:
+            words = desc.split()
+            for word in words:
+                count_vocab[word] = count_vocab.get(word, 0) + 1
+    # Get words that appear more than 10 times
+    for word, count in count_vocab.items():
+        if count >= 10:
+            vocab.add(word)
+            
+    return vocab
+
+
+# Save vocab to file
+def save_vocab(vocab, filename):
+    data = '\n'.join(vocab)
+    file = open(filename, 'w')
+    file.write(data)
+    file.close()
+            
+            
 # Save descriptions to file, one per line
 def save_descriptions(descriptions, filename):
     with open(filename, 'w') as file:
