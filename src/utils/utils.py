@@ -61,8 +61,8 @@ def clean_descriptions(descriptions):
             # remove tokens with numbers in them
             desc = [word for word in desc if word.isalpha()]
             # add 'startseq ' and ' endseq' to each description
-            desc.insert(0, 'startseq ')
-            desc.append(' endseq')
+            desc.insert(0, 'startseq')
+            desc.append('endseq')
             # store as string
             desc_list[i] = ' '.join(desc)
             
